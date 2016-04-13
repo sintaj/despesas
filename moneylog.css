@@ -1,0 +1,692 @@
+/*
+	MoneyLog default CSS
+	by Aurelio Jargas
+	http://aurelio.net/moneylog/
+*/
+
+/* ---------------------------------------------- Reset CSS (from YUI) */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0;padding:0; }
+table { border-collapse:collapse;border-spacing:0; }
+body { font:12px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; }
+select,input,button,textarea { font:99% arial,helvetica,clean,sans-serif; }
+table { font-size:inherit;font:100%; }
+th,td { border-style:none;padding:0; }
+p,blockquote,ul,ol,dl { margin:1em; }
+ol,ul,dl { margin-left:2em; }
+dl dd { margin-left:1em; }
+
+
+/* ---------------------------------------------- Structure */
+
+body {
+	background-color: white;  /* content_bg */
+	color: #333;  /* text_color */
+}
+#container {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#toolbar {
+	position: fixed;
+	top: 57px;  /* This is the height of #logo-wrapper */
+	bottom: 0;
+	left: 0;
+	width: 217px;
+	overflow: auto;
+}
+#content {
+	margin-left: 217px;  /* See toggleFullScreen, #toolbar */
+	padding: 30px;
+	overflow: auto;
+}
+
+/* ---------------------------------------------- Misc */
+
+label,
+.trigger {
+	cursor: pointer;
+}
+.number {
+	text-align: right !important;
+	white-space: nowrap;
+}
+.neg {  /* Negative numbers */
+	color: #e33;
+}
+.hl {  /* Highlighted words */
+	color: black;
+	background-color: #ddd;  /* _light */
+}
+#tag-report tr:hover td.totals,
+tr:hover td,
+tr.future:hover td {  /* explicit TD to exclude TH */
+	background-color: #eee;  /* hover_bg */
+	color: black;
+}
+#toolbar input,
+#toolbar label,
+#toolbar select {
+	vertical-align:middle;
+}
+#toolbar input {
+	border: 1px solid #bbb;  /* element_border */
+}
+
+/* ---------------------------------------------- Error */
+
+#error {
+	display: none;
+	margin: 5em 10%;
+	padding: 10px;
+	border: 8px solid red;
+	background-color: yellow;
+	color: black;
+	line-height: 180%;
+}
+
+/* ---------------------------------------------- Logo */
+
+#logo-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+#logo {
+	float: left;
+	background-color: #EBEBEB;
+	width: 201px;
+	height: 57px;
+	margin: 0;
+}
+#logo a {
+	color: #333;  /* text_color */
+}
+#app-name {
+	font-size: 30px;
+	line-height: 30px;
+	padding: 5px 0 0 20px;
+}
+#website:hover {
+	text-decoration: underline;
+}
+#app-flavor {
+	font-size: 15px;
+	line-height: 15px;
+	padding: 2px 0 0 130px;
+	text-transform: lowercase;
+	color: black;  /* _dark */
+}
+
+/* ---------------------------------------------- Full screen */
+
+#fullscreen {
+	font-size: 11px;
+	background-color: black;  /* _dark */
+	color: white;
+	width: 15px;  /* same as scrollbar width */
+	float: left;
+	text-align: center;
+	height: 57px;
+	line-height: 55px;
+}
+
+/* ---------------------------------------------- Toolbar */
+
+#toolbar a,
+a.button {
+	text-decoration: none;
+}
+
+#toolbar hr {
+	clear: both;
+	border: 1px solid #ddd;  /* toolbar_sep */
+	border-width: 1px 0 0 0;
+	margin: 1em 0;
+}
+
+#toolbar-controls-wrapper {
+	background-color: #FAFAFA;
+	clear: both;
+	width: 200px;
+}
+
+#toolbar-controls {
+	padding: 15px 17px;
+}
+
+/* ---------------------------------------------- Button */
+
+.button {
+	display: block;
+	margin: 1em 0 0 0;
+	text-align: center;
+	font-weight: normal;
+	font-size: 100%;
+	line-height: 200%;
+	text-transform: lowercase;
+	border: 1px solid #bbb;  /* element_border */
+	background-color: white;
+	background-color: #F4F4F4;  /* button_bg */
+	position: relative;
+}
+.button.active,
+a.button:active {
+	border-color: black;  /* _dark */
+	background-color: black;  /* _dark */
+	color: white;
+}
+a.button {
+	color: #333;  /* text_color */
+}
+a.button.active {
+	color: white;
+}
+.button.wide {
+	display: block !important;
+	float: none !important;
+	width: 100% !important;
+}
+.button.naked {
+	background-color: inherit;
+	border-style: none;
+}
+
+.widget-box .button:before {
+	content: "▶";
+	position: absolute;
+	top: 0;
+	left: 8px;  /* The same as .widget-content padding-left */
+}
+.widget-box .button.active:before {
+	content: "▼";
+	position: absolute;
+	top: 0;
+	left: 8px;  /* The same as .widget-content padding-left */
+}
+
+/* ---------------------------------------------- [ widgets ] */
+
+.widget-content {
+	background-color: white;
+	border: 1px solid #bbb;  /* element_border */
+	border-top-width: 0;
+	padding: 8px;
+	line-height: 185%;
+}
+.widget-content a {
+	color: #2B97E9;  /* cloud_blue */
+}
+#about-content a:hover {
+	text-decoration: underline;
+	/* Restricted to #about, this breaks Tag Cloud <a> */
+}
+.widget-content select,
+.widget-content table {
+	width: 100%;
+}
+.widget-options input {
+	display: inline;
+	margin-right: 0.5em;
+}
+
+/* ---------------------------------------------- [file.txt ▼] */
+
+#source-file {
+	width: 100%;
+}
+
+#source-file-box.mini {
+	line-height: 150%;
+}
+#source-file.mini {
+	width: 140px;
+}
+
+/* ---------------------------------------------- [edit] [reload] */
+
+#source-reload,
+#editor-open {
+	display: inline-block;  /* see showHideEditButton() */
+	width: 78px;
+}
+#source-reload {
+	float: right;
+}
+
+#source-reload.mini {  /* ↻ */
+	float: right;
+	margin: 0;
+	padding: 0;
+	line-height: 150%;
+	width: 1.5em;
+}
+#source-reload.mini:hover {
+	background-color: black;
+	color: white;
+}
+
+/* ---------------------------------------------- [daily] [monthly] [yearly] */
+
+#toolbar #report-nav {
+	text-align: center;
+}
+#toolbar #report-nav a {
+	display: inline-block;
+	width: 50px;
+	margin: 0 5px 0 0;
+}
+#toolbar #report-nav #y {
+	margin-right: 0;
+}
+
+/* ---------------------------------------------- [search      ]  */
+
+#search-content {
+	border-top-width: 1px;
+}
+#filter {
+	width: 100%;
+	border: 1px solid #C9C9C9;
+	background-color: #F4F4F4;  /* button_bg */
+	padding: 3px 0;
+	margin-bottom: 5px;
+}
+#opt-negate-check {
+	margin-left: 1em;
+}
+
+/* ---------------------------------------------- [X] Options */
+
+#toolbar label:hover,
+#toolbar input:hover + label {
+/*	font-weight: bold;*/
+}
+.checkbox-option {
+	text-align: left;
+	clear: both;
+}
+.checkbox-option-extra {
+	margin-left: 1em;
+}
+.auto-hide {
+	display: none;  /* appears when clicked, see toggleCheckboxOptionExtra() */
+}
+.option-disabled {
+	color: #AAAAAA;
+}
+
+/* ---------------------------------------------- [ view ] */
+
+#view-options-content {
+	display: none;  /* JS will show */
+}
+#opt-date-1-month-combo,
+#opt-date-2-month-combo,
+#opt-date-1-year-combo,
+#opt-date-2-year-combo {
+	float: right;
+	width: auto;
+}
+#opt-date-1-year-combo,
+#opt-date-2-year-combo {
+	display: none;  /* appears in Yearly report */
+}
+#opt-future-box,
+#opt-last-months-box {
+	display: none;  /* legacy, JS will show */
+}
+#opt-value-filter-number {
+	display: none;  /* appears when SELECT item is chosen */
+}
+
+/* ---------------------------------------------- [ tag cloud ] */
+
+#tag-cloud-content {
+	display: none;  /* JS will show if there are tags */
+	text-align: center;
+}
+#tag-cloud-tags a {
+	padding: 2px 2px;
+	color: #333;  /* text_color */
+	white-space: nowrap;
+}
+#tag-cloud-tags a.selected {
+	background-color: #ddd;  /* _light */
+	color: black;
+}
+#tag-cloud-tags a.excluded  {
+	text-decoration: line-through;
+}
+#tag-cloud-options {
+	display: none;  /* JS will show */
+}
+
+/* ---------------------------------------------- [ tag summary ] */
+
+#tag-summary-content {
+	display: none;  /* JS will show */
+}
+
+/* ---------------------------------------------- [ about ] */
+
+#about-content {
+	display: none;  /* JS will show */
+	text-align: center;
+}
+#about-donate {
+	font-size: 150%;
+}
+#about-credits {
+	display: inline-block;
+	text-align: left;
+}
+
+/* ---------------------------------------------- Report */
+
+/* labelNoData */
+#report p {
+	text-align: center;
+}
+
+/* Report table */
+.report {
+	margin: 0 auto;  /* do not use width:100% */
+}
+
+/* Table headings are also buttons */
+.report th {
+	text-align: center;
+	cursor: pointer;
+	padding: 0.5em;
+}
+.report th:hover {
+	background-color: black;  /* _dark */
+	color: white;
+}
+
+/* Column sorting is not working for some columns, so undo formatting */
+th.row-count,
+table.daily th.balance,
+table.overview th.percent {
+	cursor: auto !important;
+}
+th.row-count,
+table.daily th.balance:hover,
+table.overview th.percent:hover {
+	color: #333 !important;  /* text_color */
+	background-color: white !important;  /* content_bg */
+}
+
+/* Generic cell config */
+.report td {
+	border: 1px solid #ddd;  /* _light */
+	border-width: 1px 0;
+	vertical-align: middle;
+}
+
+/* Column config */
+td.row-count {
+	text-align: center;
+	font-size: 75%;
+	border-style: none !important;
+	background-color: white !important;  /* content_bg */
+	color: silver !important;  /* _light_text */
+}
+td.date {
+	white-space: nowrap;
+}
+
+/* Future */
+tr.future {
+	background-color: #f8f8f8; /* future_bg */
+	font-style: italic;
+}
+tr.future td.row-count {
+	font-style: normal;
+}
+
+/* Selected row */
+tr.selected,
+tr.selected:hover td,
+tr.selected .neg {
+	background-color: black;  /* _dark */
+	color: white;
+}
+
+/* Totals rows & cells */
+tr.totals,
+td.totals {
+	background-color: #ddd;  /* _light */
+}
+tr.total,
+td.total {
+	font-weight: bold;
+}
+
+/* Rows padding */
+.report td {
+	padding: 6px 10px;
+}
+.report tr.totals td {
+	padding: 1px 10px; /* top/bottom: td - 6px */
+}
+
+/* ---------------------------------------------- Report - Daily */
+
+/* Total row tweaks */
+#report table.daily tr.totals {
+	font-weight: bold;
+}
+#report table.daily tr.totals table.posneg {
+	float: right;
+	font-size: 90%;
+	font-weight: normal;
+}
+#report table.daily tr.totals table.posneg td {
+	padding: 0;
+	white-space: nowrap;
+	border-style: none;
+}
+#report table.daily tr.totals td.monthtotal {
+	text-align: left;
+	padding-left: 0;
+}
+#report table.daily tr.totals td.monthtotal .arrow {
+	margin-right: 8px;
+}
+
+/* ---------------------------------------------- Report - Monthly/Yearly */
+
+.report td.rowlabel {
+	font-weight: bold;
+}
+
+/* ---------------------------------------------- Minibars inside report table */
+
+td.minibar {
+	border-style: none !important;
+}
+div.minibar {
+	float: left;
+}
+td.minibar .label {
+	float: left;
+	font-size: 75%;
+	color: white !important;
+	line-height: 14px;
+}
+
+/* ---------------------------------------------- Charts */
+
+#charts {
+	display: none;  /* JS will show */
+	text-align: center;
+	margin-top: 4em;
+}
+#chart-content {
+	overflow: auto;
+}
+#chart-selector {
+	margin-bottom: 5px;
+}
+.posbar {
+	background-color: #2B97E9; /* bar1_bg cloud_blue */
+}
+.negbar {
+	background-color: #f33;   /* bar2_bg */
+}
+table.chart {
+	margin: 0 auto;
+	border: 1px solid #bbb;  /* element_border */
+	border-collapse: separate;
+	border-spacing: 7px;  /* space between bars and also border */
+}
+table.chart td.bar {
+	text-align: center;
+	vertical-align: bottom;
+}
+table.chart td.bar div.bar {
+	width: 35px;  /* must fit 4 digits for the year, i.e. 2012 */
+	margin: 0 auto;
+}
+table.chart td.bar .label {
+	font-size: 11px;
+	font-style: italic;
+}
+table.chart tr.label {
+	font-size: 10px;
+	line-height: 100%;
+	text-align: center;
+}
+table.chart tr:hover td {
+	background-color: white;  /* content_bg */
+}
+
+/* ---------------------------------------------- Tag report */
+
+#tag-report {
+	margin-top: 4em;
+}
+#tag-report th {
+	text-align: right;
+	vertical-align: bottom;
+	padding: 6px 10px;  /* same as .report td */
+}
+#tag-report th.tagname {
+	text-align: left;
+}
+#tag-report th i {  /* obfuscate year */
+	font-weight: normal;
+	font-style: normal;
+	color: silver;  /* _light_text */
+}
+#tag-report th:hover i {
+	color: white;
+}
+#tag-report td.totals {
+	background-color: inherit;
+	font-style: italic;
+}
+#tag-report td.total {
+	padding-left: 20px;  /* separate */
+}
+#tag-report-options {
+	display: none;  /* JS will show */
+	text-align: center;
+	margin-top: 1.5em;
+}
+
+/* ---------------------------------------------- Rows summary */
+
+#rows-summary {
+	display: none;  /* JS will show */
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 5px;
+	border: 8px solid black;  /* _dark */
+	background-color: #ddd;  /* _light */
+}
+#rows-summary-content td {
+	padding: 4px 10px;
+}
+#rows-summary-index {
+	width: 100%;
+	margin-bottom: 5px;
+}
+#rows-summary-reset {
+	margin-top: 0.5em;
+}
+
+/* ---------------------------------------------- Footer */
+
+#footer-message {
+	color: silver;  /* _light_text */
+	text-align: center;
+	margin-top: 4em;
+}
+
+/* ---------------------------------------------- Editor */
+
+/* The editor */
+#editor {  /* fill full window, hiding app interface */
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: white;  /* content_bg */
+}
+#editor-file-name {
+	position: fixed;
+	left: 41px;
+	top: 21px;
+	line-height: 29px;  /* 50px (wrapper-top) - 21px (top) */
+	margin: 0;
+	padding: 0 11px;
+	letter-spacing: 1px;
+	color: white;  /* content_bg */
+	background-color: black;  /* _dark */
+}
+#editor-data-wrapper {  /* position:fixed so we can set textarea height:~100% */
+	position: fixed;
+	top: 50px;  /* space for file name */
+	right: 30px;
+	bottom: 70px;  /* space for the buttons */
+	left: 30px;
+	border: 8px solid black;  /* _dark */
+	padding: 15px 0 15px 15px;
+}
+#editor-data {
+	width: 100%;
+	height: 100%;
+	outline-width: 0;  /* disable focus ring */
+	border-style: none;
+	margin: 0;
+	font-family: monospace;
+}
+#editor-buttons {
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+}
+#editor-close,
+#editor-save {
+	display: inline-block;
+	width: 100px;
+}
+#editor-close {
+	margin-right: 3px;
+}
+
+/* ---------------------------------------------- Data */
+
+/* Always hidden */
+#data,
+#data-frame {
+	display: none !important;
+}
+

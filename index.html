@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<!--
+
+MoneyLog Experience - http://aurelio.net/moneylog/
+===================
+
+	MoneyLog Experience is a one-file finances reporter.
+
+	O MoneyLog Experience é um gerador de extratos em um único arquivo.
+
+Author/Autor:
+	Aurelio Jargas (www.aurelio.net)
+
+History/Histórico:
+	v1: Jun-Jul 2006
+	v2: Jan-Feb 2007 (english version on May/2007)
+	v3: Oct-Dec 2007
+	v4: Aug 2009
+	online: May 2010
+	cloud (dropbox): Jan 2012
+
+License/Licença:
+	MIT - http://en.wikipedia.org/wiki/MIT_license
+
+-->
+
+<head><title>MoneyLog</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="generator" content="TextMate">
+<meta name="author" content="Aurelio Marinho Jargas www.aurelio.net">
+<meta name="keywords" content="Personal Finance, KISS, Simple, HTML, CSS, JavaScript">
+<meta name="description" content="MoneyLog Experience - Personal finances management made real simple. In one single editable text file you have all your transactions and the engine to query it. Alter with any text editor and view the reports on the browser. Made with HTML, CSS and JavaScript.">
+<link rel="shortcut icon" href="http://aurelio.net/moneylog/favicon.ico">
+
+<!-- iOS icon -->
+<link rel="apple-touch-icon" href="http://aurelio.net/moneylog/img/ios-icon.png">
+
+<!-- Set correct width for smartphones -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="moneylog.css">
+<link rel="stylesheet" type="text/css" href="css/mobile.css">
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+
+<!-- Scripts -->
+<script type="text/javascript" src="moneylog.js"></script>
+<script type="text/javascript" src="config.js"></script>
+
+</head>
+
+<body>
+<div id="container">
+
+<!-- Toolbar -->
+<div id="toolbar">
+
+	<div id="logo-wrapper">
+		<div id="logo">
+			<div id="app-name"><a id="website" href="http://sintaj.org/">Despesas SINTAJ</a></div>
+			<div id="app-flavor"></div>
+		</div>
+
+		<div id="fullscreen" class="trigger">||</div>
+	</div>
+
+	<div id="toolbar-controls-wrapper">
+		<div id="toolbar-controls">
+
+			<!-- Data Files -->
+			<div id="source-file-box">
+				<select
+					id="source-file" size="1"></select>
+				<a
+					id="editor-open" class="button" href="#"></a><a
+					id="source-reload" class="button" href="#"></a>
+			</div>
+
+			<hr id="toolbar-sep-1" />
+
+			<!-- Report Type -->
+			<div id="report-nav">
+				<a
+					id="d" class="button" href="#"></a><a
+					id="m" class="button" href="#"></a><a
+					id="y" class="button" href="#"></a>
+			</div>
+
+			<hr id="toolbar-sep-2" />
+
+			<!-- Search -->
+			<div id="search-box" class="widget-box">
+				<div id="search-content" class="widget-content">
+					<!-- Note: Not using <form> to avoid action on Enter pressing -->
+					<input id="filter" type="text">
+					<div class="checkbox-option">
+						<input
+							id="opt-regex-check" class="trigger" type="checkbox">
+						<label
+							id="opt-regex-label" for="opt-regex-check"></label>
+
+						<input
+							id="opt-negate-check" class="trigger" type="checkbox">
+						<label
+							id="opt-negate-label" for="opt-negate-check"></label>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- View -->
+			<div id="view-options-box" class="widget-box">
+				<a id="view-options-header" class="button" href="#"></a>
+				<div id="view-options-content" class="widget-content">
+
+					<!-- From: -->
+					<div id="opt-date-1-box" class="checkbox-option">
+						<input
+							id="opt-date-1-check" class="trigger" type="checkbox">
+						<label
+							id="opt-date-1-label" for="opt-date-1-check"></label>
+						<select id="opt-date-1-month-combo"></select>
+					</div>
+
+					<!-- Until: -->
+					<div id="opt-date-2-box" class="checkbox-option">
+						<input
+							id="opt-date-2-check" class="trigger" type="checkbox">
+						<label
+							id="opt-date-2-label" for="opt-date-2-check"></label>
+						<select id="opt-date-2-month-combo"></select>
+					</div>
+
+					<!-- Monthly -->
+					<div id="opt-monthly-box" class="checkbox-option">
+						<input
+							id="opt-monthly-check" class="trigger" type="checkbox">
+						<label
+							id="opt-monthly-label" for="opt-monthly-check"></label>
+					</div>
+
+					<!-- Future -->
+					<div id="opt-future-box" class="checkbox-option">
+						<input
+							id="opt-future-check" class="trigger" type="checkbox">
+						<label
+							id="opt-future-label" for="opt-future-check"></label>
+					</div>
+
+					<!-- Last Months -->
+					<div id="opt-last-months-box" class="checkbox-option">
+						<input
+							id="opt-last-months-check" class="trigger" type="checkbox">
+						<label
+							id="opt-last-months-label" for="opt-last-months-check"></label>
+
+						<div id="opt-last-months-extra" class="checkbox-option-extra auto-hide">
+							<select
+								id="opt-last-months-combo" size="1"></select>
+						</div>
+					</div>
+
+					<!-- Value Filter -->
+					<div id="opt-value-filter-box" class="checkbox-option">
+						<input
+							id="opt-value-filter-check" class="trigger" type="checkbox" style="display:none;">
+						<label
+							id="opt-value-filter-label" for="opt-value-filter-check" style="display:none;"></label>
+
+						<div id="opt-value-filter-extra" class="checkbox-option-extra auto-hide" style="display:none;">
+							<select
+								id="opt-value-filter-combo" size="1">
+							</select><input
+								id="opt-value-filter-number" size="3" type="text">
+						</div>
+					</div>
+
+				</div><!-- view-options-content -->
+			</div><!-- view-options-box -->
+
+
+			<!-- Tag Cloud -->
+			<div id="tag-cloud-box" class="widget-box">
+				<a id="tag-cloud-header" class="button" href="#"></a>
+				<div id="tag-cloud-content" class="widget-content">
+
+					<div id="tag-cloud-tags">
+					</div>
+
+					<div id="tag-cloud-options" class="widget-options">
+						<hr />
+						<div id="tag-cloud-opt-reset-box" class="checkbox-option">
+							<input
+								id="tag-cloud-opt-reset-check" type="checkbox" class="trigger">
+							<label
+								id="tag-cloud-opt-reset-label" for="tag-cloud-opt-reset-check"></label>
+						</div>
+						<div id="tag-cloud-opt-group-box" class="checkbox-option">
+							<input
+								id="tag-cloud-opt-group-check" type="checkbox" class="trigger">
+							<label
+								id="tag-cloud-opt-group-label" for="tag-cloud-opt-group-check"></label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Widgets -->
+			<div id="widgets">
+			</div>
+
+		</div><!-- toolbar-controls -->
+	</div><!-- toolbar-controls-wrapper -->
+</div><!-- #toolbar -->
+
+
+<div id="content">
+
+	<noscript>
+		<p>Sorry. No JavaScript detected, it won't work.</p>
+		<p>Ops! Seu navegador está sem JavaScript, sem ele não vai funcionar.</p>
+	</noscript>
+
+	<div id="error">
+	</div>
+
+	<!-- Report -->
+	<div id="report">
+	</div>
+
+	<!-- Chart -->
+	<div id="charts">
+		<select id="chart-selector" size="1"></select>
+		<div id="chart-content"></div>
+	</div>
+
+	<!-- Tag Report -->
+	<div id="tag-report">
+		<div id="tag-report-content"></div>
+
+		<div id="tag-report-options">
+			<input
+				id="tag-report-opt-related-check" type="checkbox" class="trigger">
+			<label
+				id="tag-report-opt-related-label" for="tag-report-opt-related-check"></label>
+		</div>
+	</div>
+
+	<!-- Rows Summary -->
+	<div id="rows-summary">
+		<select id="rows-summary-index" size="1"></select>
+		<div id="rows-summary-content"></div>
+		<a id="rows-summary-reset" class="button active" href="#"></a>
+	</div>
+
+	<div id="footer-message">
+	</div>
+
+</div><!-- #content -->
+
+
+<!-- Editor -->
+<div id="editor">
+	<div id="editor-file-name"></div>
+	<div id="editor-data-wrapper">
+		<textarea rows="25" id="editor-data"></textarea>
+	</div>
+	<div id="editor-buttons">
+		<a id="editor-close" class="button active" href="#"></a>
+		<a id="editor-save" class="button active" href="#"></a>
+	</div>
+</div>
+
+
+<!-- Data - local TXT mode -->
+<iframe id="data-frame" onload="iframeLoaded(this)">
+	<p>Sorry. No iframes support detected, please use the Portable version.</p>
+	<p>Ops! Seu navegador não entende iframes. Use a versão Portable.</p>
+</iframe>
+
+<!-- Data - Portable mode -->
+<pre id="data">
+</pre>
+
+</div><!-- #container -->
+</body>
+</html>
