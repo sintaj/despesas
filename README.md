@@ -1,4 +1,6 @@
-# Controle de Despesas Sindicais baseado no MoneyLog do @oreio
+# Controle de Despesas Sindicais 
+
+Software baseado no (MoneyLog) [http://aurelio.net/] para dar transparência às despesas sindicais
 
 
 
