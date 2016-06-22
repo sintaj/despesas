@@ -21,7 +21,7 @@ var N = false;
 *
 *********************************************************************/
 
-var myPassword = 'teste';              // Set up an access password
+var myPassword = '';              // Set up an access password
 var lang = 'pt';                  // pt:Portuguese, en:English, ca:Catalan, es:Spanish (Argentina)
 var reportType = 'd';             // Initial report type: d m y (daily, monthly, yearly)
 var initFullScreen = false;       // Start app in Full Screen mode?
